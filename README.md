@@ -41,12 +41,11 @@ mlops-linear-regression/
 - Loaded `model.joblib` and ran predictions on sample test data.
 - Displayed a few sample outputs to verify correctness.
 
-###  Step 4: Manual Quantization
-- Loaded the original model's weights.
-- Applied min-max quantization to convert parameters into 8-bit integers.
-- Dequantized them back and used them for inference.
-- Measured R² and MSE for quantized inference.
-- Compared model size before and after quantization.
+###  Step 4: Quantization
+- Quantizes model weights and intercept using `uint8`.
+- Uses per-parameter scale factors for better precision.
+- Saves quantized params in `quant_params.joblib`.
+- Evaluates R² and MSE before and after quantization.
 
 ###  Step 5: Dockerization
 - Wrote a Dockerfile that installs dependencies, trains the model, and performs predictions.
@@ -64,9 +63,9 @@ mlops-linear-regression/
 
 | Metric             | Original Model    | Quantized Model    |
 |--------------------|-------------------|--------------------|
-|  R² Score          | 0.5758            | 0.5565             |
-|  MSE               | 0.5559            | 0.5811             |
-|  Model Size        | 0.68 KB           | 0.33 KB            |
+|  R² Score          | 0.5758            | 0.5758             |
+|  MSE               | 0.5559            | 0.5559             |
+|  Model Size        | 0.68 KB           | 0.40 KB            |
 
 > The quantized model reduces size by over 50% while maintaining comparable accuracy, demonstrating efficient trade-offs in model deployment.
 
@@ -82,4 +81,4 @@ mlops-linear-regression/
 ---
 
 Chandan Jena  
-
+G24AI1107
